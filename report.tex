@@ -1,4 +1,4 @@
-\documentclass{article}
+﻿\documentclass{article}
 \usepackage{graphicx}
 \usepackage{amsmath}
 \usepackage{hyperref}
@@ -10,7 +10,7 @@
 
 \geometry{a4paper, margin=1in}
 
-\pagestyle{fancy}
+\pagestyle{fancy}	
 \fancyhf{}
 \rhead{Replication Project}
 \lhead{Bhanu Prathap Yadav Varla}
@@ -25,7 +25,6 @@
 
 \begin{abstract}
 Reproduction for BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding: A Radical Breakthrough Model in NLP This paper will attempt to replicate the results that were produced from the original experiment by running the model BERT on four of the most challenging datasets known: CoNLL-2003 for Named Entity Recognition (NER), MNLI for sentence-pair classification, SQuAD for question answering, and STS-B for semantic textual similarity. Through bidirectional training, BERT outstandingly excels in these tasks, surpassing previous models with the use of context from both sides of the sentence.
-
 Apart from reproducing this original work, this project introduces the custom datasets on question-answering, sentence-pair classification, and named entity recognition, testing adaptability and robustness in new contexts. The results suggest that the BERT model has very high accuracy and F1-scores for all the tasks under discussion, confirming its generalizability. However, performance discrepancies across the different tasks stress points of weaknesses, especially in many challenging applications, such as entity recognition and semantic similarity. The paper actually confirms that BERT is indeed at the state-of-the-art while offering insights into a justification of its weak side and opportunities for further investigation.
 \end{abstract}
 
@@ -110,6 +109,16 @@ The key components of the environment included:
     \item \textbf{Datasets}: SQuAD v1.1, MNLI, and CoNLL-2003 (all datasets were downloaded via the Hugging Face library).
 \end{itemize}
 
+\subsection*{Evidence of Investigation}
+{
+Throughout the replication process, the team encountered minor variances in results, largely attributed to differences in hardware and batch configurations. These variations were analyzed, and necessary adjustments were applied to align our setup with the original study parameters.
+}
+
+\subsection*{Code Repository}
+{
+All scripts used for this replication project can be found in our GitHub repository: \href{https://github.com/bhanuprathapyadav/bert_replication_project.git}{https://github.com/bhanuprathapyadav/bert\_replication\_project.git}. This repository includes all the scripts, each corresponding to the dataset worked on by individual group members.
+}
+
 \subsection{Fine-tuning on SQuAD}
 For the SQuAD dataset, it applied fine-tuning using a script called python, located in the BERT repository. I made slight modifications to the script to allow epochs and learning rates to be different. The model was then set to train for 3 epochs with a batch size of 12 and a learning rate of 3e-5. After fine-tuning, its predictions were tested based on EM and F1-score metrics, which are standards for most question-answering tasks.
 
@@ -140,6 +149,29 @@ The BERT model was almost exactly replicated on SQuAD, MNLI, and CoNLL-2003, in 
 
 \section{Construction of New Data}
 The new datasets were created to test BERT’s generalization capabilities. Below are the new datasets and the methodology followed to construct them.
+Each member generated a custom dataset reflecting the original task format:
+
+\begin{enumerate}
+    \item \textbf{Arun Kumar Raja - MNLI-like Sentiment Dataset:}
+    \begin{itemize}
+        {Created a sentiment analysis dataset with premise-hypothesis pairs labelled positive, neutral, or negative.}
+    \end{itemize}
+
+    \item \textbf{Bhanu Prathap Yadav Varla - QA Dataset:}
+    \begin{itemize}
+        {Developed an AI-themed QA dataset by extracting contexts and generating questions, formatted like SQuAD.}
+    \end{itemize}
+
+    \item \textbf{Vaibhav Saini - NER Corpus:}
+    \begin{itemize}
+        {Constructed a NER dataset by annotating sentences with entities, following the CoNLL-2003 format.}
+    \end{itemize}
+
+    \item \textbf{Ashok Kumar - STS-B-like Similarity Dataset:}
+    \begin{itemize}
+        {Produced a similarity dataset with sentence pairs rated on a scale, assessing BERT’s capability for semantic similarity.}
+    \end{itemize}
+\end{enumerate}
 
 \subsection{Question-Answering Dataset}
 This dataset has been developed in order to check the capability of BERT to extract answers from a context. The used contexts were information-based while asking the questions\\
@@ -216,5 +248,21 @@ During this project, it was realized that a different approach to dataset constr
 \section{Summary of Results}
 Overall, the performance of BERT on all datasets is quite high. Its training in a bidirectional direction leads the model to take care of most NLP tasks efficiently. However, some tasks, like NER and STS, display slight variability. The addition of the use of customized datasets further demonstrates BERT's adaptability and illustrates areas for potential future research to increase model generalization.
 
+\section{References}
+\begin{itemize}
+    \item Devlin, J., Chang, M.-W., Lee, K., \& Toutanova, K. (2019). BERT: Pre-training of deep bidirectional transformers for language understanding. \textit{Proceedings of the 2019 Conference of the North American Chapter of the Association for Computational Linguistics: Human Language Technologies, Volume 1 (Long and Short Papers)}, 4171–4186. \url{https://doi.org/10.18653/v1/N19-1423}
+
+    \item Tjong Kim Sang, E. F., \& De Meulder, F. (2003). Introduction to the CoNLL-2003 shared task: Language-independent named entity recognition. \textit{Proceedings of the Seventh Conference on Natural Language Learning at HLT-NAACL 2003}, 142–147. \url{https://doi.org/10.3115/1119176.1119195}
+
+    \item Williams, A., Nangia, N., \& Bowman, S. R. (2018). A broad-coverage challenge corpus for sentence understanding through inference. \textit{Proceedings of the 2018 Conference of the North American Chapter of the Association for Computational Linguistics: Human Language Technologies, Volume 1 (Long Papers)}, 1112–1122. \url{https://doi.org/10.18653/v1/N18-1101}
+
+    \item Rajpurkar, P., Zhang, J., Lopyrev, K., \& Liang, P. (2016). SQuAD: 100,000+ questions for machine comprehension of text. \textit{Proceedings of the 2016 Conference on Empirical Methods in Natural Language Processing}, 2383–2392. \url{https://doi.org/10.18653/v1/D16-1264}
+
+    \item Cer, D., Diab, M., Agirre, E., Lopez-Gazpio, I., \& Specia, L. (2017). SemEval-2017 Task 1: Semantic textual similarity - Multilingual and cross-lingual focused evaluation. \textit{Proceedings of the 2017 Conference on Semantic Evaluation}, 1–15. \url{https://doi.org/10.18653/v1/S17-2001}
+
+    \item Vaswani, A., Shazeer, N., Parmar, N., Uszkoreit, J., Jones, L., Gomez, A. N., Kaiser, L., \& Polosukhin, I. (2017). Attention is all you need. \textit{Advances in Neural Information Processing Systems, 30}, 5998–6008. \url{https://arxiv.org/abs/1706.03762}
+
+    \item Ruder, S., Peters, M., Swayamdipta, S., \& Wolf, T. (2019). Transfer learning in natural language processing. \textit{Proceedings of the 2019 Conference of the Association for Computational Linguistics (Tutorials)}, 15–18. \url{https://doi.org/10.18653/v1/P19-4003}
+\end{itemize}
 
 \end{document}
